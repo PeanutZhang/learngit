@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
 //        lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         getWindow().setAttributes(lp);
         LinearLayout linearLayout = findViewById(R.id.rootl);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) linearLayout.getLayoutParams();
+
        int statusBarHeight = getStatusHeight();
         Log.e("zyh","-barHeight- >  "+statusBarHeight);
         layoutParams.topMargin = statusBarHeight;
