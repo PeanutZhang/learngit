@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
 //        lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         getWindow().setAttributes(lp);
         LinearLayout linearLayout = findViewById(R.id.rootl);
-        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
-      int statusBarHeight = getStatusHeight();
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
+       int statusBarHeight = getStatusHeight();
         Log.e("zyh","-barHeight- >  "+statusBarHeight);
-
+        layoutParams.topMargin = statusBarHeight;
         linearLayout.setLayoutParams(layoutParams);
     }
 
