@@ -1,0 +1,17 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="#22000000"
+    >
+
+    <com.example.demo.views.loadingview.LoadingAnimationView
+        android:id="@+id/loading_animation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/white"
+        android:padding="8dp"
+        />
+
+</FrameLayout>

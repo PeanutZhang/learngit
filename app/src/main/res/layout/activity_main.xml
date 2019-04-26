@@ -8,9 +8,14 @@
     tools:context=".MainActivity">
     <LinearLayout
         android:id="@+id/rootl"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+   <com.example.demo.views.loadingview.LoadingView
+       android:id="@+id/load"
+       android:layout_gravity="center"
+       android:layout_width="80dp"
+       android:layout_height="80dp"/>
     <TextView
         android:background="#B699EB"
         android:layout_width="120dp"
@@ -19,6 +24,30 @@
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+       <Button
+           android:id="@+id/btss"
+           android:text="goPicture"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt2"
+            android:text="test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt3"
+            android:text="loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="240dp"
+            android:layout_height="340dp" />
+        <Button
+            android:id="@+id/bt5"
+            android:text="viewPager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
