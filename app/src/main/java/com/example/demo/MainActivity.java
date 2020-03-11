@@ -6,11 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
+import com.example.demo.activitys.ConstrainsActivity;
+import com.example.demo.aopdemo.AopDemoActivity;
 import com.example.demo.beans.MessageEvent;
 import com.example.demo.beans.Test;
 import com.example.demo.views.loadingview.LoadingView;
@@ -20,8 +24,14 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 @BindEventBus
 public class MainActivity extends AppCompatActivity {
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
 
-
         if(this.getClass().isAnnotationPresent(BindEventBus.class)){
-            EventBus.getDefault().register(this);
+//            EventBus.getDefault().register(this);
+            Log.e("zyh","mani is annotation present");
         }
 
 
@@ -48,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
 //        lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         getWindow().setAttributes(lp);
         LinearLayout linearLayout = findViewById(R.id.rootl);
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) linearLayout.getLayoutParams();
-
+        ScrollView.LayoutParams layoutParams = (ScrollView.LayoutParams) linearLayout.getLayoutParams();
 
 
        int statusBarHeight = getStatusHeight();
@@ -79,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
           startActivity(new Intent(MainActivity.this,VpActivity.class));
 
         });
+        findViewById(R.id.bt5).setOnClickListener(v->startActivity(new Intent(MainActivity.this,VpActivity.class)));
+        findViewById(R.id.bt6).setOnClickListener(v->{
+            startActivity(new Intent(MainActivity.this, ConstrainsActivity.class));
+
+        });
+        findViewById(R.id.bt7).setOnClickListener(v->startActivity(new Intent(MainActivity.this, AopDemoActivity.class)));
+        NUtils nUtils = new NUtils();
+        Log.e("zyh","-----> " +NUtils.f());
     }
 
     private int getStatusHeight() {

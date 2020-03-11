@@ -15,6 +15,7 @@ import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
 
+
 public class VpActivity extends AppCompatActivity {
 
     private ArrayList<Fragment> fragments;
@@ -26,6 +27,7 @@ public class VpActivity extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.vp);
 //        viewPager.setOffscreenPageLimit(2);
         fragments = new ArrayList<>();
+
         for (int i = 0; i < titls.length; i++) {
             fragments.add(TitleFragment.newInstance(titls[i]));
         }
@@ -33,6 +35,9 @@ public class VpActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         SlidingTabLayout tabLayout = findViewById(R.id.tl);
         tabLayout.setViewPager(viewPager);
+
+//        viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
+
     }
 
     private class  MyVpAdapter extends FragmentPagerAdapter{
@@ -66,10 +71,11 @@ public class VpActivity extends AppCompatActivity {
             return fragment;
         }
 //
+
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             Fragment fragment = fragments.get(position);
-           fragmentManager.beginTransaction().hide(fragment).commitAllowingStateLoss();
+            fragmentManager.beginTransaction().hide(fragment).commitAllowingStateLoss();
 
         }
     }

@@ -10,17 +10,23 @@
         android:id="@+id/tl"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:tl_indicator_color="#393E46"
-        android:background="#222831"
+        app:tl_indicator_color="#FBC536"
+        android:background="#A4AAC5"
         app:tl_indicator_corner_radius="5dp"
         app:tl_indicator_margin_left="2dp"
         app:tl_indicator_margin_right="2dp"
         app:tl_indicator_style="BLOCK"
+        app:tl_textsize="15sp"
+        android:orientation="vertical"
+        app:tl_textUnselectColor="#909193"
+        app:tl_textSelectColor="#000000"
+        app:tl_indicator_margin_bottom="10dp"
+        app:tl_indicator_margin_top="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/vp" />
 
-    <android.support.v4.view.ViewPager
+    <com.example.demo.views.vpager.VViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="0dp"

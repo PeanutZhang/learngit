@@ -16,6 +16,9 @@ import com.example.demo.beans.Test;
 
 import org.greenrobot.eventbus.EventBus;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class TitleFragment extends Fragment {
 
@@ -25,7 +28,8 @@ public class TitleFragment extends Fragment {
     private boolean isVisible = false;
     private boolean isInitView = false;
     private boolean isHasLoadData =false;
-    private TextView textView;
+    @BindView(R.id.ftv)
+    TextView textView;
     private  int  mCViewtimes = 0;
 
     public TitleFragment() {
@@ -61,7 +65,8 @@ public class TitleFragment extends Fragment {
 
         }
         View view = inflater.inflate(R.layout.fragment_title, container, false);
-        textView = view.findViewById(R.id.ftv);
+        ButterKnife.bind(this,view);
+//        textView = view.findViewById(R.id.ftv);
         textView.setText(mParam1);
         if(TextUtils.equals("index0",mParam1)){
             textView.setOnClickListener(v -> {

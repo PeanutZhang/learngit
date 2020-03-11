@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
 
     tools:context=".MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/rootl"
         android:orientation="vertical"
@@ -41,6 +45,7 @@
             android:layout_height="wrap_content" />
         <ImageView
             android:id="@+id/iv"
+            android:visibility="gone"
             android:layout_width="240dp"
             android:layout_height="340dp" />
         <Button
@@ -48,6 +53,17 @@
             android:text="viewPager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt6"
+            android:text="contrains测试"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt7"
+            android:text="aop act"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
