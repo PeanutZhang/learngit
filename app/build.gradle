@@ -46,11 +46,11 @@ android {
 
 }
 
-buildscript{
-    repositories{
+buildscript {
+    repositories {
         mavenCentral()
     }
-    dependencies{
+    dependencies {
         classpath 'org.aspectj:aspectjtools:1.8.9'
         classpath 'org.aspectj:aspectjweaver:1.8.9'
     }
@@ -59,6 +59,7 @@ buildscript{
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-media-compat:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:support-v4:28.0.0'
     testImplementation 'junit:junit:4.12'
@@ -74,7 +75,9 @@ dependencies {
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
     implementation 'com.github.PeanutZhang:commonproject:v1.0.1'
-
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.19'
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.19'
     implementation 'org.aspectj:aspectjrt:1.8.9'
 
     implementation rootProject.ext.dependencies["gson"]
@@ -86,11 +89,15 @@ dependencies {
     implementation rootProject.ext.dependencies["rxjava2"]
     implementation rootProject.ext.dependencies["rxlifecycle2"]
     implementation rootProject.ext.dependencies["fresco"]
+    implementation('io.socket:socket.io-client:1.0.0') {
+        exclude group: 'org.json', module: 'json'
+    }
 
 }
 import org.aspectj.bridge.IMessage
 import org.aspectj.bridge.MessageHandler
 import org.aspectj.tools.ajc.Main
+
 final def log = project.logger
 final def variants = project.android.applicationVariants
 
@@ -133,5 +140,3 @@ variants.all { variant ->
         }
     }
 }
-
-

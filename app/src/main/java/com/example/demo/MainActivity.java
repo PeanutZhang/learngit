@@ -1,10 +1,15 @@
 package com.example.demo;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
+import android.view.InputEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -13,8 +18,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.example.demo.activitys.CalendarDemoActivity;
 import com.example.demo.activitys.ConstrainsActivity;
+import com.example.demo.activitys.RxActivity;
+import com.example.demo.activitys.SocketActivity;
 import com.example.demo.aopdemo.AopDemoActivity;
+import com.example.demo.audio_video.MediaPlayerDemoActivity;
 import com.example.demo.beans.MessageEvent;
 import com.example.demo.beans.Test;
 import com.example.demo.views.loadingview.LoadingView;
@@ -96,6 +105,22 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bt7).setOnClickListener(v->startActivity(new Intent(MainActivity.this, AopDemoActivity.class)));
         NUtils nUtils = new NUtils();
         Log.e("zyh","-----> " +NUtils.f());
+        findViewById(R.id.bt8).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SocketActivity.class)));
+        findViewById(R.id.bt9).setOnClickListener(v->startActivity(new Intent(MainActivity.this, RxActivity.class)));
+        findViewById(R.id.bt10).setOnClickListener(v->setComponetNameDefault());
+        findViewById(R.id.bt11).setOnClickListener(v->setComponetNameFestival());
+        findViewById(R.id.bt12).setOnClickListener(v->{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            getWindow().setWindowAnimations(R.style.windowAnimationFadeInOut);
+            recreate();
+        });
+        findViewById(R.id.bt13).setOnClickListener(v->{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            getWindow().setWindowAnimations(R.style.windowAnimationFadeInOut);
+            recreate();
+        });
+        findViewById(R.id.btn15).setOnClickListener(v->startActivity(new Intent(this,MediaPlayerDemoActivity.class)));
+        findViewById(R.id.btn15).setOnClickListener(v -> startActivity(new Intent(this, CalendarDemoActivity.class)));
     }
 
     private int getStatusHeight() {
@@ -110,6 +135,27 @@ public class MainActivity extends AppCompatActivity {
         return statusBarHeight;
     }
 
+
+    private void setComponetNameDefault(){
+        Log.e("zyh","default");
+        PackageManager packageManager = getPackageManager();
+        ComponentName cnmDefault = new ComponentName(getPackageName(),"com.example.demo.MainActivity");
+        ComponentName festCnm = new  ComponentName(getPackageName(),"com.example.demo.FestivalActivity");
+        packageManager.setComponentEnabledSetting(festCnm,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,PackageManager.DONT_KILL_APP);
+        packageManager.setComponentEnabledSetting(cnmDefault,PackageManager.COMPONENT_ENABLED_STATE_ENABLED,PackageManager.DONT_KILL_APP);
+    }
+    private void setComponetNameFestival(){
+        Log.e("zyh","festival");
+        PackageManager packageManager = getPackageManager();
+        ComponentName cnmDefault = new ComponentName(getPackageName(),"com.example.demo.MainActivity");
+        Log.e("zyh", "setComponetNameFestival: "+getPackageName());
+        ComponentName festCnm = new ComponentName(getPackageName(),"com.example.demo.FestivalActivity");
+        packageManager.setComponentEnabledSetting(cnmDefault,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,PackageManager.DONT_KILL_APP);
+        packageManager.setComponentEnabledSetting(festCnm,PackageManager.COMPONENT_ENABLED_STATE_ENABLED,PackageManager.DONT_KILL_APP);
+
+    }
+
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     void onMessgageEvent(MessageEvent<Test> event){
         Log.e("zyh","onmessage--->"+event.getData().name);
@@ -118,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
     void onMessageStickEvent(MessageEvent event){
         Log.e("zyh","onStickMessageEvent--> "+((Test)event.getData()).name);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
